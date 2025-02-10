@@ -20,14 +20,42 @@ public class SavingAccount implements Account {
 
     public SavingAccount() {
         Scanner scanner = new Scanner(System.in);
-        System.out.print("Enter Username: ");
-        this.userName = scanner.nextLine();
-        System.out.print("Enter Date of Birth (YYYY-MM-DD): ");
-        this.dateOfBirth = scanner.nextLine();
-        System.out.print("Enter Gender (Male/Female): ");
-        this.gender = scanner.nextLine();
-        System.out.print("Enter Phone Number: ");
-        this.phoneNumber = scanner.nextLine();
+        while (true) {
+            System.out.print("Enter Username: ");
+            userName = scanner.nextLine();
+            if (userName.matches("[a-zA-Z ]+")) {
+                break;
+            }else {
+                System.out.println(RED+"Invalid username. Username must contain only alphanumeric characters."+RESET);
+            }
+        }
+        while (true){
+            System.out.print("Enter Date of Birth (DD-MM-YYYY): ");
+            dateOfBirth = scanner.nextLine();
+            if (dateOfBirth.matches("^\\d{2}-\\d{2}-\\d{4}$")){
+                break;
+            }else {
+                System.out.println(RED+"Invalid date of birth. Please enter a valid date in the format DD-MM-YYYY."+RESET);
+            }
+        }
+        while (true){
+            System.out.print("Enter Gender (Male/Female): ");
+            gender = scanner.nextLine();
+            if (this.gender.equalsIgnoreCase("Male") || this.gender.equalsIgnoreCase("Female")){
+                break;
+            } else {
+                System.out.println(RED+"Invalid gender. Please enter either Male or Female."+RESET);
+            }
+        }
+        while (true){
+            System.out.print("Enter Phone Number: ");
+            phoneNumber = scanner.nextLine();
+            if (this.phoneNumber.matches("\\d{10}")){
+                break;
+            } else {
+                System.out.println(RED+"Invalid phone number. Please enter a 10-digit number."+RESET);
+            }
+        }
         this.balance = 0.0;
     }
 
